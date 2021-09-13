@@ -1,0 +1,98 @@
+﻿@model IPagedList<LibraryAPI.Books>
+@{
+    ViewBag.Title = "Index";
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+
+</br>
+</br>
+</br>
+</br>
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Background.css" rel="stylesheet" />
+</head>
+<p>
+    <a href="@Url.Action("Add","Library")" class="btn btn-danger">Create New</a>
+</p>
+
+<body>
+    <table class="table">
+        <thead class="table-heading">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().BookId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().BookName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().AuthorName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Language)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().AvailableCopies)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Price)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody class="">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AuthorName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Language)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AvailableCopies)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit","Library",new { id = item.BookId })" class="btn btn-primary">Edit</a>
+                        <a onclick="Delete(@item.BookId)" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+
+
+@Html.PagedListPager(Model, i => Url.Action("Index", "Library", new { i }))
+@section scripts
+    {
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+        function Delete(id) {
+            alertify.confirm('Web Api CRUD Operations', 'Are you sure to Remove this from cart ?', function () {
+                window.location.href = '@Url.Action("Delete", "Library")/' + id;
+            }, null);
+        }
+    </script>
+
+}

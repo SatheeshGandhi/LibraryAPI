@@ -1,0 +1,13 @@
+﻿body {
+    background-repeat: no-repeat;
+    background-image: url('../images/vPc1OC.jpg');
+    /*background-attachment: fixed;*/
+    background-size: 100%;
+    color: #566787;
+    font-family: 'Roboto', sans-serif;
+    /*color: mediumpurple;*/
+}
+
+img {
+    opacity: 0.5;
+}

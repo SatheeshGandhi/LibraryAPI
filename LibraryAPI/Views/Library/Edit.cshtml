@@ -1,0 +1,50 @@
+﻿@model LibraryAPI.Books
+@{
+    ViewBag.Title = "Edit";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/Addcss.css" rel="stylesheet" />
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookId)
+            @Html.EditorFor(model => model.BookId)
+            @Html.ValidationMessageFor(model => model.BookId)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookName)
+            @Html.EditorFor(model => model.BookName)
+            @Html.ValidationMessageFor(model => model.BookName)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AuthorName)
+            @Html.EditorFor(model => model.AuthorName)
+            @Html.ValidationMessageFor(model => model.AuthorName)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AvailableCopies)
+            @Html.EditorFor(model => model.AvailableCopies)
+            @Html.ValidationMessageFor(model => model.AvailableCopies)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Language)
+            @Html.EditorFor(model => model.Language)
+            @Html.ValidationMessageFor(model => model.Language)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price)
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+        <div class="form-group">
+            <input type="submit" value="submit" class="btn button" />
+            <input type="reset" value="reset" class="btn button" />
+        </div>
+
+    }
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}
